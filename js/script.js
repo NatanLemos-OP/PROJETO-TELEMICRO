@@ -1,0 +1,69 @@
+document.addEventListener('DOMContentLoaded', function () {
+  // AOS
+  if (window.AOS) {
+    AOS.init({ duration: 1200, once: true });
+  }
+
+  // Particles
+  if (window.particlesJS) {
+    particlesJS('particles', {
+      particles: {
+        number: { value: 80 },
+        color: { value: '#00D4FF' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: '#00D4FF', opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } },
+      retina_detect: true
+    });
+  }
+
+  // CARROSSEL INDESTRUTÍVEL
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.carousel-slide');
+  let index = 0;
+
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+
+  if (prevBtn && nextBtn && track && slides.length) {
+    prevBtn.addEventListener('click', () => moveCarousel(-1));
+    nextBtn.addEventListener('click', () => moveCarousel(1));
+
+    function moveCarousel(direction) {
+      index = (index + direction + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    // Auto-play
+    setInterval(() => moveCarousel(1), 6000);
+  }
+
+  // Formulário
+  const budgetForm = document.getElementById('budget-form');
+  if (budgetForm) {
+    budgetForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = this;
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(() => {
+        const success = document.getElementById('success');
+        if (success) {
+          success.classList.add('show');
+          form.reset();
+          setTimeout(() => success.classList.remove('show'), 4000);
+        }
+      }).catch(() => {
+        alert('Erro ao enviar. Verifique sua conexão ou o Formspree.');
+      });
+    });
+  }
+});
