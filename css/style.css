@@ -18,6 +18,25 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Make all images and iframes fluid and avoid unexpected overflow */
+img, picture, video, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+iframe {
+  max-width: 100%;
+  width: 100%;
+  border: 0;
+  display: block;
+}
+
 /* Visually hidden but accessible to screen readers */
 .sr-only {
   position: absolute !important;
@@ -36,37 +55,42 @@ body {
   color: var(--text);
   line-height: 1.8;
   overflow-x: hidden;
+  width: 100%;
 }
 
 #particles {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   pointer-events: none;
   z-index: 1;
+  overflow: hidden;
 }
 
 header {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   z-index: 1000;
   background: rgba(15, 15, 26, 0.98);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 1.5rem 0;
+  box-sizing: border-box;
 }
 
 .nav-container {
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .logo img {
@@ -120,6 +144,9 @@ header {
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 2rem 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .mobile-menu.active {
@@ -210,6 +237,10 @@ nav a:hover::after {
   overflow: hidden;
 }
 
+/* desktop-only/mobile-only helpers */
+.desktop-only { display: inline-flex; align-items: center; }
+.mobile-only { display: none; }
+
 .btn-cta::before {
   content: '';
   position: absolute;
@@ -233,7 +264,7 @@ nav a:hover::after {
 
 .hero {
   height: 100vh;
-  min-height: 800px;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   position: relative;
@@ -249,14 +280,16 @@ nav a:hover::after {
 }
 
 .hero-content {
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 0 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  gap: 3.5rem;
   position: relative;
   z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-text {
@@ -315,7 +348,8 @@ nav a:hover::after {
 
 .hero-image img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 75vh;
   object-fit: cover;
   transition: transform 0.7s ease;
 }
@@ -325,9 +359,11 @@ nav a:hover::after {
 }
 
 .container {
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .section {
@@ -403,7 +439,8 @@ nav a:hover::after {
 
 .carousel-slide img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 55vh;
   object-fit: cover;
   filter: brightness(0.9);
 }
@@ -565,9 +602,10 @@ input:focus, select:focus, textarea:focus {
   height: 450px;
 }
 
+
 footer {
   background: #0a0a14;
-  padding: 7rem 0 3rem;
+  padding: 5rem 0 2rem;
   border-top: 3px solid var(--accent);
   position: relative;
   z-index: 2;
@@ -577,12 +615,12 @@ footer {
 .footer-grid {
   display: grid;
   grid-template-columns: 2.2fr 1fr 1fr 1.3fr;
-  gap: 4rem;
-  margin-bottom: 3rem;
-  max-width: 1600px;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 3rem;
+  padding: 0 1.5rem;
 }
 
 .footer-logo img {
@@ -648,10 +686,10 @@ footer {
   border-top: 1px solid var(--border);
   color: #888;
   font-size: 0.95rem;
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .copyright span {
@@ -665,6 +703,11 @@ footer {
 
 /* Tablets e dispositivos médios (768px e abaixo) */
 @media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   .menu-toggle {
     display: flex;
   }
@@ -675,6 +718,8 @@ footer {
 
   .nav-container {
     padding: 0 1.5rem;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .logo img {
@@ -685,6 +730,11 @@ footer {
     padding: 0.8rem 1.5rem;
     font-size: 0.9rem;
   }
+
+  /* esconder o botão desktop e mostrar botão dentro do menu móvel */
+  .desktop-only { display: none; }
+  .mobile-only { display: block; width: 100%; text-align: center; padding: 1rem 0.8rem; border-radius: 14px; box-shadow: none; }
+  .mobile-only::before { display: none; }
 
   .hero-content {
     grid-template-columns: 1fr;
@@ -789,8 +839,16 @@ footer {
 
 /* Smartphones (480px e abaixo) */
 @media (max-width: 480px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
   .nav-container {
     padding: 0 1rem;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .logo img {
@@ -801,6 +859,9 @@ footer {
     padding: 0.7rem 1.2rem;
     font-size: 0.85rem;
   }
+
+  /* garantir que em telas menores o botão móvel dentro do menu fique legível */
+  .mobile-only { border-radius: 12px; font-weight: 700; }
 
   .hero-content {
     padding: 0 1rem;
@@ -942,6 +1003,12 @@ footer {
 
 /* Ultra small devices (320px) */
 @media (max-width: 360px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
   .hero-text h1 .title-top,
   .hero-text h1 .title-bottom {
     font-size: 1.5rem;
