@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     AOS.init({ duration: 1200, once: true });
   }
 
-  // Particles
+  // Partículas
   if (window.particlesJS) {
     particlesJS('particles', {
       particles: {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // CARROSSEL INDESTRUTÍVEL
+  // CARROSSEL
   const track = document.querySelector('.carousel-track');
   const slides = document.querySelectorAll('.carousel-slide');
   let index = 0;

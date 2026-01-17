@@ -23,7 +23,6 @@ html {
   overflow-x: hidden;
 }
 
-/* Make all images and iframes fluid and avoid unexpected overflow */
 img, picture, video, svg {
   max-width: 100%;
   height: auto;
@@ -37,7 +36,6 @@ iframe {
   display: block;
 }
 
-/* Visually hidden but accessible to screen readers */
 .sr-only {
   position: absolute !important;
   height: 1px; width: 1px;
@@ -237,7 +235,6 @@ nav a:hover::after {
   overflow: hidden;
 }
 
-/* desktop-only/mobile-only helpers */
 .desktop-only { display: inline-flex; align-items: center; }
 .mobile-only { display: none; }
 
@@ -411,7 +408,6 @@ nav a:hover::after {
   margin: 1rem 0;
 }
 
-/* CARROSSEL COM BOTÕES NOVOS E INDESTRUTÍVEIS */
 .carousel {
   position: relative;
   border-radius: 32px;
@@ -1001,7 +997,6 @@ footer {
   }
 }
 
-/* Ultra small devices (320px) */
 @media (max-width: 360px) {
   html, body {
     width: 100%;
